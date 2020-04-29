@@ -12,6 +12,13 @@
 <br />
 <span [class.bg-red]="mouseClickCount > 3">teste bind class</span>
 
+<br />
+<br />
+
+<input type="text" [(ngModel)]="userName">
+
+<input type="text" [ngModel]="userName" (ngModelChange)="userName=$event">
+
 <style>
     .bg-red{
         background-color: red;
