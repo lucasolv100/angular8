@@ -1,10 +1,19 @@
 <p>learning-bindings works!</p>
 
-<button on-click="onClick()">teste on-click</button>
-<button (click)="onClick()">teste (click)</button>
+<button on-click="onClick()">teste on-click {{mouseClickCount}}</button>
+<button (click)="onClick()">teste (click) {{mouseClickCount}}</button>
 
 <br />
 <br />
 
-<button on-mouseover="onMouseOver()">teste on-mouseover</button>
-<button (mouseover)="onMouseOver()">teste (mouseover)</button>
+<button on-mouseover="onMouseOver()">teste on-mouseover {{mouseOverCount}}</button>
+<button (mouseover)="onMouseOver()">teste (mouseover) {{mouseOverCount}}</button>
+
+<br />
+<span [class.bg-red]="mouseClickCount > 3">teste bind class</span>
+
+<style>
+    .bg-red{
+        background-color: red;
+    }
+</style>

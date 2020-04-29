@@ -7,16 +7,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LearningBindingsComponent implements OnInit {
 
-  constructor() { }
+  public mouseClickCount: number;
+  public mouseOverCount: number;
+  public userName: string;
+  public userEmail: string;
+
+
+  constructor() { 
+
+      this.mouseClickCount = 0;
+      this.mouseOverCount = 0;
+      this.userEmail = '';
+      this.userName = '';
+   }
 
   ngOnInit(): void {
   }
 
   public onClick(){
     console.log('onclick disparado')
+    this.mouseClickCount++;
   }
   public onMouseOver(){
     console.log('onMouseOver disparado')
+    this.mouseOverCount++;
   }
 
 }
