@@ -8,10 +8,18 @@ import { Task } from '../shared/task.model'
   styleUrls: ['./task-detail.component.css']
 })
 export class TaskDetailComponent implements OnInit {
-  @Input() public task: Task;
+  @Input() set task(value) { this._task = value; this.taskEdited = { ...value } } get task() { return this._task }
+  public taskEdited: Task;
+  _task: Task;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  salvar() {
+    this._task = this.taskEdited;
+    console.log("TaskDetailComponent -> salvar -> this._task", this._task)
   }
 
 }
