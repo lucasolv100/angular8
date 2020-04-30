@@ -16,7 +16,7 @@ const TASKS: Array<Task> = [
 
 export class TaskService {
 
-    public getTasks(): Promise<Task[]> {
+    public async getTasks(): Promise<Task[]> {
         let promisse = new Promise<Task[]>((resolve, reject) => {
             
             if(TASKS.length > 0)

@@ -24,11 +24,13 @@ export class TasksComponent implements OnInit {
     public ngOnInit(): void {
         this.taskService.getTasks()
         .then((tasks) => this.tasks = tasks)
-        .catch((err) => console.log('erros', err));
+        .catch((err) => console.log('erros', err));    
     }
 
     public onSelect(task: Task) {
         this.selectedTask = task;
     }
+
+    
 
 }
