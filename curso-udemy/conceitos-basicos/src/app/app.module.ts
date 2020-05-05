@@ -13,7 +13,7 @@ import { TaskService } from './tasks/shared/task.service';
 const ROUTES = RouterModule.forRoot([
   { path: 'dashboard', component: DashboardComponent },
   { path: 'tasks', component: TasksComponent },
-  { path: 'tasks:id', component: TaskDetailComponent },
+  { path: 'tasks/:id', component: TaskDetailComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ]);
 

@@ -32,7 +32,11 @@ export class TaskService {
         return promisse;
     }
 
-    public getImportantTasks(): Promise<Task[]> {
+    public async getImportantTasks(): Promise<Task[]> {
         return Promise.resolve(TASKS.slice(0, 3))
+    }
+
+    public async getTask(id:number): Promise<Task>{
+        return this.getTasks().then(tasks => tasks.find(x => x.id === id))
     }
 }
