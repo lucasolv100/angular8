@@ -8,10 +8,10 @@ import { TaskService } from './shared/task.service';
 @Component({
     selector: 'tasks',
     templateUrl: './tasks.component.html',
-    providers: [
-        // { provide: TaskService, useClass: TaskService }
-        TaskService
-    ]
+    // providers: [
+    //     // { provide: TaskService, useClass: TaskService }
+    //     TaskService
+    // ]
 })
 
 export class TasksComponent implements OnInit {

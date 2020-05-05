@@ -18,19 +18,21 @@ export class TaskService {
 
     public async getTasks(): Promise<Task[]> {
         let promisse = new Promise<Task[]>((resolve, reject) => {
-            
-            if(TASKS.length > 0)
-            {
+
+            if (TASKS.length > 0) {
                 resolve(TASKS);
             }
-            else
-            {
+            else {
                 let error_msg = "Não há tarefas"
                 reject(error_msg)
             }
-            
+
         });
 
         return promisse;
+    }
+
+    public getImportantTasks(): Promise<Task[]> {
+        return Promise.resolve(TASKS.slice(0, 3))
     }
 }
