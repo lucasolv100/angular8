@@ -1,12 +1,14 @@
-<h1>Painel de controle</h1>
+<h1 class="page-header">Painel de controle</h1>
 
 <table class="table">
   <thead>
     <th>Tarefa</th>
+    <th>Ações</th>
   </thead>
   <tbody>
     <tr *ngFor="let task of tasks">
       <td>{{task.title}}</td>
+      <a class="btn btn-info" [routerLink]="['/tasks', task.id]"><i class="fa fa-info-circle"></i></a>
     </tr>
   </tbody>
 </table>
