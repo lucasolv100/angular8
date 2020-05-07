@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'
-import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -10,6 +9,8 @@ import { TaskDetailComponent } from './tasks/task-detail/task-detail.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TaskService } from './tasks/shared/task.service';
 import { AppRoutingModule } from './app-routing.module';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryTaskDataService } from './in-memory-task-data';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    InMemoryWebApiModule.forRoot(InMemoryTaskDataService)
   ],
   providers: [TaskService],
   bootstrap: [AppComponent]
