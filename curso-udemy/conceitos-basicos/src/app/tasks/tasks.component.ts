@@ -8,10 +8,10 @@ import { TaskService } from './shared/task.service';
 @Component({
     selector: 'tasks',
     templateUrl: './tasks.component.html',
-    providers: [
-        // { provide: TaskService, useClass: TaskService }
-        TaskService
-    ]
+    // providers: [
+    //     // { provide: TaskService, useClass: TaskService }
+    //     TaskService
+    // ]
 })
 
 export class TasksComponent implements OnInit {
@@ -24,11 +24,13 @@ export class TasksComponent implements OnInit {
     public ngOnInit(): void {
         this.taskService.getTasks()
         .then((tasks) => this.tasks = tasks)
-        .catch((err) => console.log('erros', err));
+        .catch((err) => console.log('erros', err));    
     }
 
     public onSelect(task: Task) {
         this.selectedTask = task;
     }
+
+    
 
 }

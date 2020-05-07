@@ -16,21 +16,27 @@ const TASKS: Array<Task> = [
 
 export class TaskService {
 
-    public getTasks(): Promise<Task[]> {
+    public async getTasks(): Promise<Task[]> {
         let promisse = new Promise<Task[]>((resolve, reject) => {
-            
-            if(TASKS.length > 0)
-            {
+
+            if (TASKS.length > 0) {
                 resolve(TASKS);
             }
-            else
-            {
+            else {
                 let error_msg = "Não há tarefas"
                 reject(error_msg)
             }
-            
+
         });
 
         return promisse;
+    }
+
+    public async getImportantTasks(): Promise<Task[]> {
+        return Promise.resolve(TASKS.slice(0, 3))
+    }
+
+    public async getTask(id:number): Promise<Task>{
+        return this.getTasks().then(tasks => tasks.find(x => x.id === id))
     }
 }

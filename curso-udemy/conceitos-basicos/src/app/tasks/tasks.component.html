@@ -1,3 +1,4 @@
+<h1 class="page-header">Lista de tarefas</h1>
 <table class="table">
     <thead>
         <th>ID</th>
@@ -9,10 +10,9 @@
             <td>{{task.id}}</td>
             <td>{{task.title}}</td>
             <td>
-                <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal" (click)="onSelect(task)"><i class="fa fa-info-circle"></i></button>
+                <a class="btn btn-info" [routerLink]="['/tasks', task.id]"><i class="fa fa-info-circle"></i></a>
                 <button class="btn btn-warning"><i class="fa fa-trash"></i></button>
             </td>
         </tr>
     </tbody>
 </table>
-<task-detail [task]="selectedTask"></task-detail>

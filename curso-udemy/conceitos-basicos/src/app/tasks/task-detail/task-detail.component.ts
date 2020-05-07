@@ -1,6 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+
+import { switchMap } from 'rxjs/operators'; 
 
 import { Task } from '../shared/task.model'
+import { TaskService } from '../shared/task.service'
+
+import {Location} from '@angular/common'
 
 @Component({
   selector: 'task-detail',
@@ -8,10 +14,15 @@ import { Task } from '../shared/task.model'
   styleUrls: ['./task-detail.component.css']
 })
 export class TaskDetailComponent implements OnInit {
-  @Input() public task: Task;
-  constructor() { }
+  public task: Task;
+  constructor(private taskService:TaskService, private activatedRoute: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
+    this.activatedRoute.params.pipe(switchMap((params:Params) => this.taskService.getTask(+params['id']))).subscribe(task => this.task = task);
+  }
+
+  goBack(){
+    this.location.back();
   }
 
 }
