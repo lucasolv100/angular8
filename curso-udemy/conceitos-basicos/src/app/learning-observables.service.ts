@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 
+import 'rxjs/add/operator/catch'
+
 @Injectable()
 
 export class LearningObservables {
@@ -22,7 +24,8 @@ export class LearningObservables {
         // });
 
         //passando diretamente as funções como parametro
-        this.http.get("api/taskaaas").subscribe(
+        this.http.get("api/tasks")
+        .subscribe(
             (newData) => console.log("Chamou o método NEXT e passou como parametro o newData => ", newData),
             (errorData) => console.log("Chamou o método ERROR e passou como parametro o errorData => ", errorData),
             () => console.log("Chamou o método COMPLETE"),
