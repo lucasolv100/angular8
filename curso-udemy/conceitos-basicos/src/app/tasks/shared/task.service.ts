@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Task } from './task.model';
+import { HttpClient } from '@angular/common/http';
 
 const TASKS: Array<Task> = [
     new Task(1, 'Fazer tarefa 1'),
@@ -15,6 +16,11 @@ const TASKS: Array<Task> = [
 @Injectable()
 
 export class TaskService {
+
+    constructor(private http: HttpClient){
+        
+    }
+
 
     public async getTasks(): Promise<Task[]> {
         let promisse = new Promise<Task[]>((resolve, reject) => {
