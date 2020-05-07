@@ -10,7 +10,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TaskService } from './tasks/shared/task.service';
 import { AppRoutingModule } from './app-routing.module';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryTaskDataService } from './in-memory-task-data';
+import { InMemoryTaskDataService } from './in-memory-task-data.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { InMemoryTaskDataService } from './in-memory-task-data';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    InMemoryWebApiModule.forRoot(InMemoryTaskDataService)
+    InMemoryWebApiModule.forRoot(InMemoryTaskDataService),
+    HttpClientModule
   ],
   providers: [TaskService],
   bootstrap: [AppComponent]
