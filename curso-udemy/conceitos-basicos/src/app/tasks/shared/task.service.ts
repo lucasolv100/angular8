@@ -31,11 +31,20 @@ export class TaskService {
         return this.http.get<Task>(url);
     }
 
-    public updateTask(task: Task): Observable<Task>{
+    public createTask(task: Task): Observable<Task> {
+        let url = `${this.taskURL}`;
+        let body = JSON.parse(JSON.stringify(task));
+        let header = new HttpHeaders({ 'Content-type': 'application/json' });
+
+        return this.http.post<Task>(url, body, { headers: header });
+    }
+
+
+    public updateTask(task: Task): Observable<Task> {
         let url = `${this.taskURL}/${task.id}`;
         let body = JSON.parse(JSON.stringify(task));
-        let header = new HttpHeaders({'Content-type': 'application/json'});
+        let header = new HttpHeaders({ 'Content-type': 'application/json' });
 
-        return this.http.put<Task>(url, body, {headers: header});
+        return this.http.put<Task>(url, body, { headers: header });
     }
 }

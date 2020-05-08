@@ -1,4 +1,16 @@
 <h1 class="page-header">Lista de tarefas</h1>
+
+<div class="card p-3 m-3">
+    <div class="row">
+        <div class="col-md-10">
+            <input type="text" placeholder="Digite uma nova tarefa" class="form-control" [(ngModel)]="newTask.title">
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary" (click)="createTask()">Adicionar</button>
+        </div>
+    </div>
+</div>
+
 <table class="table">
     <thead>
         <th>ID</th>
