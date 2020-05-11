@@ -23,7 +23,7 @@
             <td>{{task.title}}</td>
             <td>
                 <a class="btn btn-info" [routerLink]="['/tasks', task.id]"><i class="fa fa-info-circle"></i></a>
-                <button class="btn btn-warning" (click)="deleteTask(task.id)"><i class="fa fa-trash"></i></button>
+                <button class="btn btn-warning" (click)="deleteTask(task)"><i class="fa fa-trash"></i></button>
             </td>
         </tr>
     </tbody>

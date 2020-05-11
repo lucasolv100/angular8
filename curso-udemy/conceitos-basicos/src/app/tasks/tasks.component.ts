@@ -46,9 +46,13 @@ export class TasksComponent implements OnInit {
         this.taskService.getTasks().subscribe(tasks => this.tasks = tasks, err => alert('Erro ' + err));
     }
 
-    public deleteTask(id: number) {
-        this.taskService.deleteTask(id).subscribe(() => alert('Tarefa excluida com sucesso'), () => alert('Erro ao excluir a tarefa'));
-        this.getTasks();
+    public deleteTask(task: Task) {
+
+        if (confirm("Deseja realmente excluir a tarefa: " + task.title)) {
+            this.taskService.deleteTask(task.id).subscribe(() => alert('Tarefa excluida com sucesso'), () => alert('Erro ao excluir a tarefa'));
+            this.getTasks();
+        }
+        
     }
 
 }
