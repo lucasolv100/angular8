@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryTaskDataService } from './in-memory-task-data';
 import { HttpClientModule } from '@angular/common/http';
+import { SearchComponent } from './navbar/search/search.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     DashboardComponent,
     NavbarComponent,
     TasksComponent,
-    TaskDetailComponent
+    TaskDetailComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
