@@ -47,4 +47,9 @@ export class TaskService {
 
         return this.http.put<Task>(url, body, { headers: header });
     }
+    public deleteTask(id:number): Observable<null> {
+        let url = `${this.taskURL}/${id}`;
+        let header = new HttpHeaders({ 'Content-type': 'application/json' })
+        return this.http.delete<null>(url, { headers: header });
+    }
 }

@@ -30,7 +30,7 @@ export class TasksComponent implements OnInit {
     }
 
     public createTask() {
-        
+
         if (this.newTask) {
             this.newTask.title = this.newTask.title.trim();
             this.taskService.createTask(this.newTask).subscribe(() => alert('Task adicionada com sucesso'), () => alert('Erro ao adicionar a task'));
@@ -44,6 +44,11 @@ export class TasksComponent implements OnInit {
 
     public getTasks() {
         this.taskService.getTasks().subscribe(tasks => this.tasks = tasks, err => alert('Erro ' + err));
+    }
+
+    public deleteTask(id: number) {
+        this.taskService.deleteTask(id).subscribe(() => alert('Tarefa excluida com sucesso'), () => alert('Erro ao excluir a tarefa'));
+        this.getTasks();
     }
 
 }
