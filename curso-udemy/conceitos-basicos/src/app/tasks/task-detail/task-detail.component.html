@@ -2,13 +2,17 @@
 
 <form #taskForm="ngForm" *ngIf="task">
   <div class="row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-6 was-validated">
       <label for="titulo" class="col-form-label">Título</label>
-      <input type="text" [(ngModel)]="task.title" class="form-control" id="titulo" name="title" required>
+      <input #title="ngModel" type="text" [(ngModel)]="task.title" class="form-control" id="titulo" name="title" required minlength="3" maxlength="20">
+      <div *ngIf="title.invalid && (title.touched || title.dirty)" class="text-danger">
+        <small *ngIf="title.errors.required">O título é obrigatório</small>
+        <small *ngIf="title.errors.minlength">O título precisa ter ao menos 3 caracteres</small>
+      </div>
     </div>
     <div class="form-group col-md-3">
       <label for="deadLine" class="col-form-label">Prazo de entrega</label>
-      <input type="text" [(ngModel)]="task.deadLine" class="form-control" id="deadLine" name="deadLine">
+      <input #deadline type="text" [(ngModel)]="task.deadLine" class="form-control" id="deadLine" name="deadLine" [class.is-invalid]="deadline.invalid && deadline.touched">
     </div>
     <div class="form-group col-md-3">
       <label for="done" class="col-form-label">Situação da tarefa</label>
@@ -25,8 +29,18 @@
     </div>
   </div>
   <button class="btn btn-default" (click)="goBack()">Voltar</button>
-  <button type="submit" class="btn btn-success" (click)="updateTask()">Atualizar</button>
+  <button type="submit" class="btn btn-success" (click)="updateTask()" [disabled]="taskForm.invalid">Atualizar</button>
 
   <hr>
   <pre>{{task | json}}</pre>
+  
+  <hr>
+  <pre>{{title.errors | json}}</pre>
+
+  <!-- <hr>
+  <pre>title.valid: {{title.valid}}</pre>
+  <pre>title.touched: {{title.touched}}</pre>
+  <pre>title.pristine: {{title.pristine}}</pre>
+  <pre>title.untouched: {{title.untouched}}</pre>
+  <pre>title.dirty: {{title.dirty}}</pre> -->
 </form>
