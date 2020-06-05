@@ -15,6 +15,12 @@ import { Location } from '@angular/common'
 })
 export class TaskDetailComponent implements OnInit {
   public task: Task;
+  
+  public taskDoneOptions: Array<any> = [
+    {value: false, texto: 'Pendente'},
+    {value: false, texto: 'Feito'}
+  ];
+
   constructor(private taskService: TaskService, private activatedRoute: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
