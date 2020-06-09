@@ -1,0 +1,35 @@
+<h1 class="page-header">Detalhes da tarefa: {{task.title}}</h1>
+
+<form [formGroup]="reactiveTaskForm" (ngSubmit)="updateTask()">
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label for="titulo" class="col-form-label">Título</label>
+            <input type="text" class="form-control" formControlName="title">
+            <div *ngIf="!reactiveTaskForm.valid" class="text-danger">
+                <small *ngIf="reactiveTaskForm.get('title').errors.required">O título é obrigatório</small>
+                <small *ngIf="reactiveTaskForm.get('title').errors.minlength">O título precisa ter ao menos 3 caracteres</small>
+              </div>
+        </div>
+        <div class="form-group col-md-3">
+            <label for="prazo" class="col-form-label">Prazo de entrega</label>
+            <input type="text" class="form-control" formControlName="deadLine" id="deadLine">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="situacao" class="col-form-label">Situação</label>
+            <input type="text" class="form-control" formControlName="done">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-12">
+            <label for="descricao" class="col-form-label">Descrição</label>
+            <textarea type="text"class="form-control" rows="4" formControlName="description"></textarea>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="!reactiveTaskForm.valid">Atualizar</button>
+    <button class="btn btn-default" (click)="goBack()">Voltar</button>
+</form>
+<hr>
+<pre>
+    {{reactiveTaskForm.value | json}}
+</pre>
