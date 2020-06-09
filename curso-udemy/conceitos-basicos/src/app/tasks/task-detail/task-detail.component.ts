@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
 import { switchMap } from 'rxjs/operators';
@@ -13,18 +13,29 @@ import { Location } from '@angular/common'
   templateUrl: './task-detail.component.html',
   styleUrls: ['./task-detail.component.css']
 })
-export class TaskDetailComponent implements OnInit {
+export class TaskDetailComponent implements OnInit, AfterViewInit {
   public task: Task;
-  
+
   public taskDoneOptions: Array<any> = [
-    {value: false, texto: 'Pendente'},
-    {value: false, texto: 'Feito'}
+    { value: false, texto: 'Pendente' },
+    { value: false, texto: 'Feito' }
   ];
 
   constructor(private taskService: TaskService, private activatedRoute: ActivatedRoute, private location: Location) { }
+  
+  ngAfterViewInit(): void {
+    $("#deadLine").datetimepicker({
+      sideBySide: true,
+      locale: 'pt-br'
+    }).on('dp.change', () => this.task.deadLine = <string>$("#deadLine").val());
+  }
 
   ngOnInit(): void {
-    this.activatedRoute.params.pipe(switchMap((params: Params) => this.taskService.getTask(+params['id']))).subscribe(task => this.task = task);
+
+    this.task = new Task(null, null);
+
+    this.activatedRoute.params
+      .pipe(switchMap((params: Params) => this.taskService.getTask(+params['id']))).subscribe(task => this.task = task);
   }
 
   goBack() {
@@ -33,12 +44,8 @@ export class TaskDetailComponent implements OnInit {
 
   public updateTask() {
 
-    if (!this.task.title) {
-      alert('Tarefa deve ter um titulo');
-    }
-    else {
-      this.taskService.updateTask(this.task).subscribe(() => alert('Tarefa atualizada com sucesso'), err => { alert('Erro ao atualizar '); console.log(' err', err) });
-    }
+      this.taskService.updateTask(this.task)
+        .subscribe(() => alert('Tarefa atualizada com sucesso'), err => { alert('Erro ao atualizar '); console.log(' err', err) });
 
   }
 

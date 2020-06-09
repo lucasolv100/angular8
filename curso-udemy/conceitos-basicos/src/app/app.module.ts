@@ -14,6 +14,10 @@ import { InMemoryTaskDataService } from './in-memory-task-data';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from './navbar/search/search.component';
 
+//jquery
+import * as $ from 'jquery';
+import * as datetimepicker from 'eonasdan-bootstrap-datetimepicker';
+
 
 @NgModule({
   declarations: [

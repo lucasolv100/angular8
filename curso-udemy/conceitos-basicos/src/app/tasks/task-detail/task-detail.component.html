@@ -1,6 +1,6 @@
-<h1 class="page-header">Detalhes da tarefa: {{task?.title}}</h1>
+<h1 class="page-header">Detalhes da tarefa: {{task.title}}</h1>
 
-<form #taskForm="ngForm" *ngIf="task">
+<form #taskForm="ngForm" (ngSubmit)="updateTask()">
   <div class="row">
     <div class="form-group col-md-6 was-validated">
       <label for="titulo" class="col-form-label">Título</label>
@@ -28,8 +28,8 @@
       <textarea type="text" [(ngModel)]="task.description" class="form-control" id="description" name="description" rows="4"></textarea>
     </div>
   </div>
+  <button type="submit" class="btn btn-success" [disabled]="taskForm.invalid">Atualizar</button>
   <button class="btn btn-default" (click)="goBack()">Voltar</button>
-  <button type="submit" class="btn btn-success" (click)="updateTask()" [disabled]="taskForm.invalid">Atualizar</button>
 
   <hr>
   <pre>{{task | json}}</pre>
